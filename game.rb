@@ -10,7 +10,7 @@ class Game
   def turn
     question
     answer
-    # switch_player
+    switch_player
   end
 
   def question
@@ -19,8 +19,6 @@ class Game
     puts "#{@current_player.name} what is #{@a} + #{@b} ?"
   end
 
-#result = some_condition ? something : something_else
-
   def answer
     useranswer = gets.chomp
     result = useranswer.to_i === (@a + @b) ? "#{@current_player.name} Good Job!" : (@current_player.points -= 1) && "#{@current_player.name} Incorrect, Sorry it was #{(@a + @b)}, you now have #{@current_player.points}/3!"
@@ -28,10 +26,11 @@ class Game
   end
 
    def switch_player
-    result =  @current_player == @p1 ? @current_player == @p2 : @p1
-    puts result
+    result =  @current_player == @p1 ? @p2 : @p1
+   @current_player = result
    end
 
-  # def winner
-  # end
+   def winner
+    puts "#{@current_player.name} Congrats you WON! with #{@current_player.points}/3 points}"
+    end
 end
